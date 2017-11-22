@@ -20,4 +20,8 @@ http.listen(port, function() {
 
 io.on('connection', function(socket){
   console.log('a user connected');
+
+  socket.on('msg', function(msg){
+    console.log('message: ' + msg);
+  });
 });
