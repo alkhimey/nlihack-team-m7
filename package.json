@@ -1,28 +1,20 @@
 {
-  "name": "Base",
-  "version": "1.0.0",
-  "description": "Basic structure for Express web apps.",
+  "name": "nlihack-team-m7",
+  "version": "0.0.1",
+  "description": "Team m7 project for the National Library of Israel hackathon",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "test": "node_modules/.bin/mocha tests/**"
+    "start": "node app.js"
   },
   "keywords": [
-    "base",
-    "project",
-    "node",
-    "express",
-    "structure"
+    "nlihack",
+    "iiif"
   ],
-  "author": "Terlici Ltd.",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.12.3",
     "express": "^4.12.3",
-    "jade": "^1.9.2"
-  },
-  "devDependencies": {
-    "mocha": "^2.2.4",
-    "should": "^6.0.1"
+    "jade": "^1.9.2",
+    "socket.io": "^1.7.4"
   }
 }

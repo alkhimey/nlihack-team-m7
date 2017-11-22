@@ -2,6 +2,8 @@ var express = require('express')
   , app = express()
   , bodyParser = require('body-parser')
   , port = process.env.PORT || 3000
+  , http = require('http').Server(app)
+  , io = require('socket.io')(http);
 
 app.set('views', __dirname + '/views')
 app.engine('jade', require('jade').__express)
@@ -12,6 +14,10 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(require('./controllers'))
 
-app.listen(port, function() {
+http.listen(port, function() {
   console.log('Listening on port ' + port)
 })
+
+io.on('connection', function(socket){
+  console.log('a user connected');
+});
