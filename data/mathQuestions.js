@@ -4,7 +4,7 @@
 // Choices will be presented in random order.
 // points is optional, defaults to 10 if not specified.
 var mathQuestions = [{
-    points: 10,
+    answer: 0,
     question: 'https://avatars1.githubusercontent.com/u/23655873?s=64&v=4',
     choices: [
         '141',
@@ -13,8 +13,8 @@ var mathQuestions = [{
         '23'
     ]
 },{
-    points: 20,
-    question: 'https://avatars1.githubusercontent.com/u/23655873?s=64&v=4',
+     answer: 0,
+    question: 'https://static.pexels.com/photos/39517/rose-flower-blossom-bloom-39517.jpeg',
     choices: [
         '504',
         '252',
@@ -22,7 +22,8 @@ var mathQuestions = [{
         '2'
     ]
 },{
-    question: "When was Pythagoras alive?",
+    answer: 0,
+    question: "https://static.pexels.com/photos/36753/flower-purple-lical-blosso.jpg?",
     choices: [
         '500 BC',
         '800 BC',

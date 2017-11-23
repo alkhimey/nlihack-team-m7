@@ -35,7 +35,7 @@ app.get('/p', function (req, res) {
 var nextQuestionDelayMs = 5000; //5secs // how long are players 'warned' next question is coming
 var timeToAnswerMs = 10000; // 10secs // how long players have to answer question 
 var timeToEnjoyAnswerMs = 5000; //5secs // how long players have to read answer
-
+var currentQustion = null;
 
 //Socket.io emits this event when a connection is made.
 io.sockets.on('connection', function (socket) {
@@ -54,7 +54,7 @@ io.sockets.on('connection', function (socket) {
             name: data.playerName
         });
         console.log('SOCKET.IO player added: '+ p.name + ' from '+ ip + ' for socket '+ socket.id);
-        emitPlayerUpdate(socket);
+        emitPlayerUpdate();
         
         // TODO: Remove  - debug
         emitNewQuestion();
@@ -86,32 +86,52 @@ io.sockets.on('connection', function (socket) {
 });
 
 function emitNewQuestion() {
+    console.log(new Date().getTime());
     //players.winningSocket = null;
+    var index = Math.floor(Math.random()*3);
+    currentQustion = mathQuestions[index];
 
     io.sockets.emit('question', {
         //totalTime: nextQuestionDelayMs,
         //endTime: new Date().getTime() + nextQuestionDelayMs,
-        choices: mathQuestions[0].choices,
-        question: mathQuestions[0].question
+         
+        choices: currentQustion.choices,
+        question: currentQustion.question
 
        // choices: ['aaa', 'bbbb', 'cccc', 'ddd'],
        // question:'https://avatars1.githubusercontent.com/u/23655873?s=64&v=4'
     });
 
-    console.log(mathQuestions);
-/*
-    setTimeout(function(){
-        var q = tq.getQuestionObj(true);
-        q.endTime = new Date().getTime() + timeToAnswerMs;
-        q.totalTime = timeToAnswerMs;
-        
-        io.sockets.emit('question', q);
-        
-        setTimeout(function(){
-            emitAnswer();
-        }, timeToAnswerMs);
 
-    }, nextQuestionDelayMs);   */
+   // console.log(mathQuestions);
+
+    setTimeout(function(){
+
+        players.updatePoints(currentQustion.answer);
+        players.clearAnswers();
+        emitPlayerUpdate();
+        io.sockets.emit("clearanswers");
+
+        io.sockets.emit("PresentAnswer", currentQustion.answer);
+
+
+    
+        // var q = tq.getQuestionObj(true);
+        // q.endTime = new Date().getTime() + timeToAnswerMs;
+        // q.totalTime = timeToAnswerMs;
+        
+        // io.sockets.emit('question', q);
+        
+        // setTimeout(function(){
+        //     emitAnswer();
+        // }, timeToAnswerMs);
+
+    }, 5000); 
+
+         setTimeout(function(){
+            io.sockets.emit("UnPresentAnswer");
+            emitNewQuestion();
+         },10000);
 }
 
 /*
@@ -146,7 +166,7 @@ function emitAnswer() {
 */
 
 
-function emitPlayerUpdate(socket) {
+function emitPlayerUpdate() {
     var playerData = players.getPlayerData();
     io.sockets.emit('players', playerData);
 }

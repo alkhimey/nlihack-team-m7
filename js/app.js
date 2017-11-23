@@ -22,6 +22,47 @@ $(function () {
         });
     });
 
+    socket.on('clearanswers', function() {
+        $("#selected").html("");
+    });
+
+    socket.on('PresentAnswer', function(data) {
+        
+       if(data == 0)
+        {
+             $("#answer_1_txt").css("background-color","#4CAF50");
+             $("#answer_1").css("background-color","#4CAF50");
+        }
+        else if(data == 1)
+        {
+              $("#answer_2_txt").css("background-color","#4CAF50");
+             $("#answer_2").css("background-color","#4CAF50");
+        }
+        else if(data == 2)
+        {
+              $("#answer_3_txt").css("background-color","#4CAF50");
+             $("#answer_3").css("background-color","#4CAF50");
+        }
+        else if(data == 3)
+        {
+              $("#answer_4_txt").css("background-color","#4CAF50");
+             $("#answer_4").css("background-color","#4CAF50");
+        }
+        
+    });
+
+     socket.on('UnPresentAnswer', function(data) {
+            
+             $("#answer_1_txt").css("background-color","");
+             $("#answer_1").css("background-color","");  
+              $("#answer_2_txt").css("background-color","");
+             $("#answer_2").css("background-color","");      
+              $("#answer_3_txt").css("background-color","");
+             $("#answer_3").css("background-color","");      
+             $("#answer_4_txt").css("background-color","");
+             $("#answer_4").css("background-color","");       
+    });
+
     $('#connect').click(function(){
         socket.emit("playerJoin", { playerName :  $('#name').val() });
         $('#answersblock').css("visibility",'visible');
@@ -30,19 +71,24 @@ $(function () {
     });
 
     $('#answer_1').click(function(){
-        socket.emit("answer", { number : '1' });
+        socket.emit("answer", { number : '0' });
+        $("#selected").html("A");
+
     });
 
     $('#answer_2').click(function(){
-        socket.emit("answer", { number : '2' });
+        socket.emit("answer", { number : '1' });
+         $("#selected").html("B");
     });
 
     $('#answer_3').click(function(){
-        socket.emit("answer", { number : '3' });
+        socket.emit("answer", { number : '2' });
+         $("#selected").html("C");
     });
 
     $('#answer_4').click(function(){
-        socket.emit("answer", { number : '4' });
+        socket.emit("answer", { number : '3' });
+         $("#selected").html("D");
     });
 
 
