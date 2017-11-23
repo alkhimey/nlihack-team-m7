@@ -57,9 +57,10 @@ io.sockets.on('connection', function (socket) {
         emitPlayerUpdate();
         
         // TODO: Remove  - debug
-        emitNewQuestion();
 
+            
     });
+      
     
     
     socket.on('disconnect', function() {
@@ -72,6 +73,13 @@ io.sockets.on('connection', function (socket) {
         players.removePlayer(socket.id);
         emitPlayerUpdate();
     });
+
+     socket.on('startgame', function() { 
+             if(players.getPlayerCount() >= 1)
+            {   
+                emitNewQuestion();
+            }
+        });
 /*
     socket.on('answer', function (data) { 
         console.log('SOCKET.IO player answered: "'+ data.answer + '" for question: '+ data.question);
@@ -84,6 +92,9 @@ io.sockets.on('connection', function (socket) {
     });
 */
 });
+
+
+ 
 
 function emitNewQuestion() {
     console.log(new Date().getTime());

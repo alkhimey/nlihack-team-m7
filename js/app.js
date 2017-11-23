@@ -50,6 +50,10 @@ $(function () {
         }
         
     });
+    //remove screenstart 
+    socket.on('startgame', function(){
+       
+    });
 
      socket.on('UnPresentAnswer', function(data) {
             
@@ -61,6 +65,15 @@ $(function () {
              $("#answer_3").css("background-color","");      
              $("#answer_4_txt").css("background-color","");
              $("#answer_4").css("background-color","");       
+    });
+     $('#justabutton').click(function(){
+
+        $('#openningscreen').remove();
+        $('#justabutton').remove();
+        $('#gamescreen').css("visibility",'visible');
+        
+        socket.emit("startgame");
+        
     });
 
     $('#connect').click(function(){
