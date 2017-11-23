@@ -8,14 +8,14 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceFolder}\\app.js"
+            "program": "${workspaceFolder}\\server.js"
         }, 
         {
             "name": "Launch with nodemon",
             "type": "node",
             "request": "launch",
             "program": "${workspaceRoot}/node_modules/nodemon/bin/nodemon.js",
-            "args": ["${workspaceRoot}/index.js"],
+            "args": ["${workspaceRoot}/server.js"],
             "runtimeArgs": ["--nolazy"]
           }
     ]
