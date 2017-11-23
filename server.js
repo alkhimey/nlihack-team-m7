@@ -8,7 +8,7 @@ var express = require('express'),
     tq = require('./lib/TriviaQuestions.js'),
     players = require('./lib/Players.js'),
     PORT = process.env.PORT || 8080,
-    url  = 'http://localhost:' + PORT + '/';
+    url = 'http://localhost:' + PORT + '/';
 
 if (process.env.SUBDOMAIN) {
     url = 'http://' + process.env.SUBDOMAIN + '.jit.su/';
@@ -53,19 +53,19 @@ io.sockets.on('connection', function (socket) {
             clientIp: ip,
             name: data.playerName
         });
-        console.log('SOCKET.IO player added: '+ p.name + ' from '+ ip + ' for socket '+ socket.id);
+        console.log('SOCKET.IO player added: ' + p.name + ' from ' + ip + ' for socket ' + socket.id);
         emitPlayerUpdate();
-        
+
         // TODO: Remove  - debug
 
-            
+
     });
-      
-    
-    
-    socket.on('disconnect', function() {
+
+
+
+    socket.on('disconnect', function () {
         var pname = players.getPlayerName(socket.id);
-        console.log('SOCKET.IO player disconnect: '+ pname + ' for socket '+ socket.id);
+        console.log('SOCKET.IO player disconnect: ' + pname + ' for socket ' + socket.id);
         if (!pname) {
             // already disconnected
             return;
@@ -74,75 +74,73 @@ io.sockets.on('connection', function (socket) {
         emitPlayerUpdate();
     });
 
-     socket.on('startgame', function() { 
-             if(players.getPlayerCount() >= 1)
-            {   
-                emitNewQuestion();
-            }
-        });
-/*
-    socket.on('answer', function (data) { 
-        console.log('SOCKET.IO player answered: "'+ data.answer + '" for question: '+ data.question);
-        players.lastActive(socket.id);
-        // TODO: handle case where player might have already answered (damn hackers)
-        if (tq.isCorrect(data) && !players.winningSocket) {
-            console.log('SOCKET.IO player correct ! =========> : "'+ data.answer + '", '+ players[socket.id] + ' for socket '+ socket.id);
-            players.winningSocket = socket;
+    socket.on('startgame', function () {
+        if (players.getPlayerCount() >= 1) {
+            emitNewQuestion();
         }
     });
-*/
+    /*
+        socket.on('answer', function (data) { 
+            console.log('SOCKET.IO player answered: "'+ data.answer + '" for question: '+ data.question);
+            players.lastActive(socket.id);
+            // TODO: handle case where player might have already answered (damn hackers)
+            if (tq.isCorrect(data) && !players.winningSocket) {
+                console.log('SOCKET.IO player correct ! =========> : "'+ data.answer + '", '+ players[socket.id] + ' for socket '+ socket.id);
+                players.winningSocket = socket;
+            }
+        });
+    */
 });
 
 
- 
+
 
 function emitNewQuestion() {
     console.log(new Date().getTime());
     //players.winningSocket = null;
-    var index = Math.floor(Math.random()*3);
+    var index = Math.floor(Math.random() * 3);
     currentQustion = mathQuestions[index];
 
     io.sockets.emit('question', {
         //totalTime: nextQuestionDelayMs,
         //endTime: new Date().getTime() + nextQuestionDelayMs,
-         
+
         choices: currentQustion.choices,
         question: currentQustion.question
 
-       // choices: ['aaa', 'bbbb', 'cccc', 'ddd'],
-       // question:'https://avatars1.githubusercontent.com/u/23655873?s=64&v=4'
+        // choices: ['aaa', 'bbbb', 'cccc', 'ddd'],
+        // question:'https://avatars1.githubusercontent.com/u/23655873?s=64&v=4'
     });
 
 
-   // console.log(mathQuestions);
+    // console.log(mathQuestions);
 
-    setTimeout(function(){
+    setTimeout(function () {
 
         players.updatePoints(currentQustion.answer);
         players.clearAnswers();
         emitPlayerUpdate();
         io.sockets.emit("clearanswers");
-
         io.sockets.emit("PresentAnswer", currentQustion.answer);
 
 
-    
+
         // var q = tq.getQuestionObj(true);
         // q.endTime = new Date().getTime() + timeToAnswerMs;
         // q.totalTime = timeToAnswerMs;
-        
+
         // io.sockets.emit('question', q);
-        
+
         // setTimeout(function(){
         //     emitAnswer();
         // }, timeToAnswerMs);
 
-    }, 5000); 
+    }, 5000);
 
-         setTimeout(function(){
-            io.sockets.emit("UnPresentAnswer");
-            emitNewQuestion();
-         },10000);
+    setTimeout(function () {
+        io.sockets.emit("UnPresentAnswer");
+        emitNewQuestion();
+    }, 10000);
 }
 
 /*
