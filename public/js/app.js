@@ -26,7 +26,7 @@ $(function () {
     });
 
     socket.on('clearanswers', function () {
-        $("#selected").html("");
+        $("#selected").css("display","none");
     });
 
     socket.on('PresentAnswer', function (data) {
@@ -84,22 +84,26 @@ $(function () {
 
     $('#answer_1').click(function () {
         socket.emit("answer", { number: '0' });
+        $("#selected").css("display","inline");
         $("#selected").html("A");
 
     });
 
     $('#answer_2').click(function () {
         socket.emit("answer", { number: '1' });
+        $("#selected").css("display","inline");
         $("#selected").html("B");
     });
 
     $('#answer_3').click(function () {
         socket.emit("answer", { number: '2' });
+        $("#selected").css("display","inline");
         $("#selected").html("C");
     });
 
     $('#answer_4').click(function () {
         socket.emit("answer", { number: '3' });
+        $("#selected").css("display","inline");
         $("#selected").html("D");
     });
 
