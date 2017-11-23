@@ -7,7 +7,7 @@ var express = require('express'),
     mathQuestions = require('./data/mathQuestions'),
     tq = require('./lib/TriviaQuestions.js'),
     players = require('./lib/Players.js'),
-    PORT = process.env.PORT || 8080,
+    PORT = process.env.PORT || 3000,
     url  = 'http://localhost:' + PORT + '/';
 
 if (process.env.SUBDOMAIN) {
