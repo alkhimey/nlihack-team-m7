@@ -3,8 +3,11 @@ $(document).foundation() // artium
 
 
 $(function () {
-    var socket = io();
+ 
 
+
+    //var socket = io();
+    var socket =  io({transports: ['websocket']});
     socket.on('question', function (data) {
         $('#image').attr("src", data.question);
         $('#answer_1_txt').html(data.choices[0]);

@@ -7,8 +7,9 @@ var express = require('express'),
     mathQuestions = require('./data/mathQuestions'),
     tq = require('./lib/TriviaQuestions.js'),
     players = require('./lib/Players.js'),
-    PORT = process.env.PORT || 8080,
-    url = 'http://localhost:' + PORT + '/';
+
+    PORT = process.env.PORT || 3000,
+    url  = 'http://localhost:' + PORT + '/';
 
 if (process.env.SUBDOMAIN) {
     url = 'http://' + process.env.SUBDOMAIN + '.jit.su/';
@@ -21,8 +22,8 @@ console.log(url);
 tq.init(mathQuestions);
 players.init();
 
-app.use('/css/', express.static(__dirname + '/css'));
-app.use('/js/', express.static(__dirname + '/js'));
+app.use('/css', express.static(__dirname + 'public/css'));
+app.use('/js', express.static(__dirname + 'public/js'));
 app.get('/', function (req, res) {
     res.sendfile(__dirname + '/index.html');
 });
