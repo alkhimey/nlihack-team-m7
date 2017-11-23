@@ -5,7 +5,7 @@
 // points is optional, defaults to 10 if not specified.
 var mathQuestions = [{
     points: 10,
-    question: "Which number is NOT a prime number?",
+    question: 'https://avatars1.githubusercontent.com/u/23655873?s=64&v=4',
     choices: [
         '141',
         '37',
@@ -14,7 +14,7 @@ var mathQuestions = [{
     ]
 },{
     points: 20,
-    question: "What is the smallest number into which 8, 18, and 28 all divide?",
+    question: 'https://avatars1.githubusercontent.com/u/23655873?s=64&v=4',
     choices: [
         '504',
         '252',

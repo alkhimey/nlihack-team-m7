@@ -91,9 +91,14 @@ function emitNewQuestion() {
     io.sockets.emit('question', {
         //totalTime: nextQuestionDelayMs,
         //endTime: new Date().getTime() + nextQuestionDelayMs,
-        choices: ['aaa', 'bbbb', 'cccc', 'ddd'],
-        question:'https://avatars1.githubusercontent.com/u/23655873?s=64&v=4'
+        choices: mathQuestions[0].choices,
+        question: mathQuestions[0].question
+
+       // choices: ['aaa', 'bbbb', 'cccc', 'ddd'],
+       // question:'https://avatars1.githubusercontent.com/u/23655873?s=64&v=4'
     });
+
+    console.log(mathQuestions);
 /*
     setTimeout(function(){
         var q = tq.getQuestionObj(true);
