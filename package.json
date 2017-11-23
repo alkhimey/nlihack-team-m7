@@ -1,23 +1,28 @@
 {
-  "name": "nlihack-team-m7",
-  "version": "0.0.1",
-  "description": "Team m7 project for the National Library of Israel hackathon",
-  "main": "app.js",
+  "name": "trivia-game",
+  "author": {
+    "name": "Chad Norwood",
+    "email": "chad@chadnorwood.com"
+  },
   "scripts": {
-    "start": "nodemon app.js"
+    "test": "PORT=8420 node_modules/mocha/bin/mocha --reporter spec test/*.test.js",
+    "start": "node server.js"
   },
-  "keywords": [
-    "nlihack",
-    "iiif"
-  ],
-  "license": "MIT",
-  "devDependencies": {
-    "nodemon": "^1.12.1"
-  },
+  "version": "0.2",
   "dependencies": {
-    "body-parser": "^1.12.3",
-    "express": "^4.12.3",
-    "jade": "^1.9.2",
-    "socket.io": "^1.7.4"
-  }
+    "socket.io": "0.9.x",
+    "express": "3.0.x"
+  },
+  "devDependencies": {
+    "socket.io-client": "*",
+    "chai": "*",
+    "mocha": "*"
+  },
+  "engines": {
+    "node": "0.8.x"
+  },
+  "analyze": false,
+  "readmeFilename": "ReadMe.md",
+  "subdomain": "trivia-game",
+  "description": "A Math Trivia Game, using node.js and socket.io, for bellycard.com"
 }
