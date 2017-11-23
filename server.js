@@ -27,6 +27,10 @@ app.get('/', function (req, res) {
     res.sendfile(__dirname + '/index.html');
 });
 
+app.get('/p', function (req, res) {
+    res.sendfile(__dirname + '/player.html');
+});
+
 
 var nextQuestionDelayMs = 5000; //5secs // how long are players 'warned' next question is coming
 var timeToAnswerMs = 10000; // 10secs // how long players have to answer question 
@@ -35,6 +39,12 @@ var timeToEnjoyAnswerMs = 5000; //5secs // how long players have to read answer
 
 //Socket.io emits this event when a connection is made.
 io.sockets.on('connection', function (socket) {
+
+    socket.on('answer', function (data) {
+        console.log('button ' + data.number);
+
+        players.setAnswer(socket.id, parseInt(data.number));
+    });
 
     socket.on('playerJoin', function (data) {
         var ip = socket.handshake.address.address;
@@ -45,11 +55,13 @@ io.sockets.on('connection', function (socket) {
         });
         console.log('SOCKET.IO player added: '+ p.name + ' from '+ ip + ' for socket '+ socket.id);
         emitPlayerUpdate(socket);
-        if (players.getPlayerCount() == 1) {
-            // start game!
-            emitNewQuestion();
-        }
+        
+        // TODO: Remove  - debug
+        emitNewQuestion();
+
     });
+    
+    
     socket.on('disconnect', function() {
         var pname = players.getPlayerName(socket.id);
         console.log('SOCKET.IO player disconnect: '+ pname + ' for socket '+ socket.id);
@@ -60,7 +72,7 @@ io.sockets.on('connection', function (socket) {
         players.removePlayer(socket.id);
         emitPlayerUpdate();
     });
-
+/*
     socket.on('answer', function (data) { 
         console.log('SOCKET.IO player answered: "'+ data.answer + '" for question: '+ data.question);
         players.lastActive(socket.id);
@@ -70,19 +82,19 @@ io.sockets.on('connection', function (socket) {
             players.winningSocket = socket;
         }
     });
-
+*/
 });
 
 function emitNewQuestion() {
-    players.winningSocket = null;
+    //players.winningSocket = null;
 
     io.sockets.emit('question', {
-        totalTime: nextQuestionDelayMs,
-        endTime: new Date().getTime() + nextQuestionDelayMs,
-        choices: [],
-        question:'Next Question ...'
+        //totalTime: nextQuestionDelayMs,
+        //endTime: new Date().getTime() + nextQuestionDelayMs,
+        choices: ['aaa', 'bbbb', 'cccc', 'ddd'],
+        question:'https://avatars1.githubusercontent.com/u/23655873?s=64&v=4'
     });
-
+/*
     setTimeout(function(){
         var q = tq.getQuestionObj(true);
         q.endTime = new Date().getTime() + timeToAnswerMs;
@@ -94,9 +106,10 @@ function emitNewQuestion() {
             emitAnswer();
         }, timeToAnswerMs);
 
-    }, nextQuestionDelayMs);
-    
+    }, nextQuestionDelayMs);   */
 }
+
+/*
 function emitAnswer() {
     
     var answerData = tq.getQuestionObj();
@@ -125,7 +138,9 @@ function emitAnswer() {
         emitNewQuestion();
     }, timeToEnjoyAnswerMs);
 }
+*/
 
+// TODO artium: Emit only to the main game window socket
 function emitPlayerUpdate(socket) {
     var playerData = players.getPlayerData();
     if (socket) {
@@ -138,4 +153,3 @@ function emitPlayerUpdate(socket) {
         io.sockets.emit('players', playerData); // emit to everyone (points update)
     }
 }
-
