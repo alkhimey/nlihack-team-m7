@@ -140,16 +140,8 @@ function emitAnswer() {
 }
 */
 
-// TODO artium: Emit only to the main game window socket
+
 function emitPlayerUpdate(socket) {
     var playerData = players.getPlayerData();
-    if (socket) {
-        socket.broadcast.emit('players', playerData); // emit to all but socket 
-
-        playerData.msg = 'Welcome, '+ players.getPlayerName(socket.id);
-        socket.emit('players', playerData); // emit only to socket
-        
-    } else {
-        io.sockets.emit('players', playerData); // emit to everyone (points update)
-    }
+    io.sockets.emit('players', playerData);
 }

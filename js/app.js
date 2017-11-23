@@ -13,8 +13,20 @@ $(function () {
         $('#answer_4_txt').html(data.choices[3]);
     });
 
+    // update and display player list
+    socket.on('players', function(data) {
+        $('#highscoreblock').empty();
+        data.players.forEach(function(item, idx) {
+            var item = $("<li></li>").text(item.name + " " + item.points);
+            $('#highscoreblock').append(item);
+        });
+    });
+
     $('#connect').click(function(){
         socket.emit("playerJoin", { playerName :  $('#name').val() });
+        $('#answersblock').css("visibility",'visible');
+        $('#firstconnect').remove();
+        
     });
 
     $('#answer_1').click(function(){

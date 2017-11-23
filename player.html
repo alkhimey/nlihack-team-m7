@@ -13,18 +13,18 @@
         <link rel="stylesheet" type="text/css" href="/css/app.css">
     </head>
     <body>
+        <div id="firstconnect">
+            <input type="text" id="name">
 
-        <input type="text" id="name">
-
-        <input type="button" id="connect" value="connect">
-
+            <input type="button" id="connect" value="connect">
+        </div>
         <br />
-
-        <input type="button" id="answer_1" value="A">
-        <input type="button" id="answer_2" value="B">
-        <input type="button" id="answer_3" value="C">
-        <input type="button" id="answer_4" value="D">
-        
+        <div id="answersblock" style="visibility:hidden;">
+            <input type="button" id="answer_1" value="A" >
+            <input type="button" id="answer_2" value="B">
+            <input type="button" id="answer_3" value="C">
+            <input type="button" id="answer_4" value="D">
+        </div>
         <script src="/socket.io/socket.io.js"></script>
         <script src="js/vendor/jquery.js"></script>
         <script src="js/vendor/foundation.js"></script>
