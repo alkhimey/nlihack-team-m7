@@ -4,13 +4,16 @@
   "description": "Team m7 project for the National Library of Israel hackathon",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "nodemon app.js"
   },
   "keywords": [
     "nlihack",
     "iiif"
   ],
   "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^1.12.1"
+  },
   "dependencies": {
     "body-parser": "^1.12.3",
     "express": "^4.12.3",
