@@ -2,6 +2,9 @@ doctype html
 html
   head
     title Your basic web app structure
+    script(src='/socket.io/socket.io.js')
+    script(src='js/vendor/jquery.js')
+    
   body
     h1 Welcome to your basic web app structure
     p
@@ -9,3 +12,16 @@ html
     p
       | Here is an example url
     a(href="/missions/10") Mission 10
+
+    input(type="button", value="Press Me", id="btn")
+
+    script.
+      $(function () {
+        var socket = io();
+        $('#btn').click(function(){
+          socket.emit("msg", "xxx");
+        });
+        return false;
+      });
+
+  

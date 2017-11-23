@@ -1,28 +1,28 @@
 {
-  "name": "Base",
-  "version": "1.0.0",
-  "description": "Basic structure for Express web apps.",
-  "main": "app.js",
-  "scripts": {
-    "start": "node app.js",
-    "test": "node_modules/.bin/mocha tests/**"
+  "name": "trivia-game",
+  "author": {
+    "name": "Chad Norwood",
+    "email": "chad@chadnorwood.com"
   },
-  "keywords": [
-    "base",
-    "project",
-    "node",
-    "express",
-    "structure"
-  ],
-  "author": "Terlici Ltd.",
-  "license": "MIT",
+  "scripts": {
+    "test": "PORT=8420 node_modules/mocha/bin/mocha --reporter spec test/*.test.js",
+    "start": "node server.js"
+  },
+  "version": "0.2",
   "dependencies": {
-    "body-parser": "^1.12.3",
-    "express": "^4.12.3",
-    "jade": "^1.9.2"
+    "socket.io": "0.9.x",
+    "express": "3.0.x"
   },
   "devDependencies": {
-    "mocha": "^2.2.4",
-    "should": "^6.0.1"
-  }
+    "socket.io-client": "*",
+    "chai": "*",
+    "mocha": "*"
+  },
+  "engines": {
+    "node": "0.8.x"
+  },
+  "analyze": false,
+  "readmeFilename": "ReadMe.md",
+  "subdomain": "trivia-game",
+  "description": "A Math Trivia Game, using node.js and socket.io, for bellycard.com"
 }

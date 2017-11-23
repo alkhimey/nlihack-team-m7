@@ -1,0 +1,31 @@
+body {
+    background-color: #DDD;
+}
+.whiteBox {
+    background-color: #FFF;
+    padding: 10px 15px;
+    margin: 10px 0;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+}
+.header button {
+    margin-left:10px;
+}
+.leave {
+    display:none;
+}
+.players,
+.playerMsg {
+    font-size: 17.5px;
+}
+.players a {
+    font-size: 12px;
+}
+.players li {
+    padding: 3px 1px;
+}
+.choice {
+    margin-right: 25px;
+    margin-bottom: 20px;
+}
