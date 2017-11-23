@@ -21,8 +21,8 @@ console.log(url);
 tq.init(mathQuestions);
 players.init();
 
-app.use('/css/', express.static(__dirname + '/css'));
-app.use('/js/', express.static(__dirname + '/js'));
+app.use('/css', express.static(__dirname + '/css'));
+app.use('/js', express.static(__dirname + '/js'));
 app.get('/', function (req, res) {
     res.sendfile(__dirname + '/index.html');
 });
