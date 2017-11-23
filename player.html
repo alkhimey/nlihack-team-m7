@@ -13,33 +13,24 @@
         <link rel="stylesheet" type="text/css" href="/css/app.css">
     </head>
     <body>
-        <div id="openningscreen" >
-            <h1>Welcome to the day of tommorow!!! hahaha</h1>
-            <img src='http://cdnqrcgde.s3-eu-west-1.amazonaws.com/wp-content/uploads/2013/11/jpeg.jpg' alt="">
+        <div id="firstconnect">
+            <input type="text" id="name">
+
+            <input type="button" id="connect" value="connect">
         </div>
-        <div id="gamescreen" style="visibility:hidden">
-            <img id="image" src="" height="200px" width="200px"> 
-
-          <br />
-
-        A: <div id="answer_1_txt"> default 1 </div> <br />
-        B: <div id="answer_2_txt"> default 2 </div> <br />
-        C: <div id="answer_3_txt"> default 3 </div> <br />
-        D: <div id="answer_4_txt"> default 4 </div> <br />
-         </div>
-
-         
-    <div>
-        <ol id="highscoreblock">
-        </ol>
+        <br />
+        <div id="answersblock" style="visibility:hidden;">
+            
+            <div id="selected"> </div>
+            <input type="button" id="answer_1" value="A" >
+            <input type="button" id="answer_2" value="B">
+            <input type="button" id="answer_3" value="C">
+            <input type="button" id="answer_4" value="D">
+        </div>
         <script src="/socket.io/socket.io.js"></script>
         <script src="js/vendor/jquery.js"></script>
         <script src="js/vendor/foundation.js"></script>
         <script src="js/app.js"></script>
-    </div>
-
-    <input type="button" id="justabutton" value="Click to start"></input>
-       
 
 
 
