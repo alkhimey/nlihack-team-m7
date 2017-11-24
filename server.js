@@ -42,6 +42,8 @@ const  DISPL_ANSWER_TIME = 5000;
 
 var currentQustion = null;
 
+game_in_prog = false;
+
 //Socket.io emits this event when a connection is made.
 io.sockets.on('connection', function(socket) {
 
@@ -77,7 +79,10 @@ io.sockets.on('connection', function(socket) {
     });
 
     socket.on('startgame', function() {
+        if (game_in_prog == false) {
+            game_in_prog = true;
             getQuestionMetaData();
+        }         
     });
 });
 
@@ -96,18 +101,6 @@ function emitNewQuestion(q) {
         emitPlayerUpdate();
         io.sockets.emit("clearanswers");
         io.sockets.emit("PresentAnswer", currentQustion.answer);
-
-
-
-        // var q = tq.getQuestionObj(true);
-        // q.endTime = new Date().getTime() + timeToAnswerMs;
-        // q.totalTime = timeToAnswerMs;
-
-        // io.sockets.emit('question', q);
-
-        // setTimeout(function(){
-        //     emitAnswer();
-        // }, timeToAnswerMs);
 
     }, QUESTION_TIME);
 
