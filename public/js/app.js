@@ -1,10 +1,11 @@
 $(document).foundation() // artium
 
-
+var progress_width = 0; // pct
+var question_time = 5000; // ms
+var progress_resolution = 50; // update every 100 ms
+var prog_intervall_id = null;
 
 $(function() {
-
-
 
     //var socket = io();
     var socket = io({ transports: ['websocket'] });
@@ -18,6 +19,23 @@ $(function() {
         $('#openningscreen').remove();
         $('#justabutton').remove();
         $('#gamescreen').css("visibility", 'visible');
+
+        if (prog_intervall_id != null) {
+            clearInterval(prog_intervall_id);
+            prog_intervall_id = null;
+        }
+        progress_width = 0;
+        prog_intervall_id = setInterval(function() {
+            $("#mymeter").width(progress_width + "%");
+            if (progress_width >= 100) {
+                clearInterval(prog_intervall_id);
+                prog_intervall_id = null;
+            }
+            else {
+                progress_width += (100.0 * progress_resolution) / question_time;             
+            }
+            
+        }, progress_resolution);
     });
 
     // update and display player list
