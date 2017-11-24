@@ -6,8 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Trivia Game</title>
     <meta name="description" content="A Fun Trivia Game Project.  Details at https://github.com/chadn/trivia-game">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
     <link href="css/trivia.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/css/form.css">
     <link rel="stylesheet" type="text/css" href="/css/foundation.css">
@@ -15,9 +14,15 @@
 </head>
 
 <body>
-    <div id="openningscreen">
-        <h1>Welcome to the NLI :) ! </h1>
+    <div id="openningscreen" align="center">
+        <h1 style="color:aquamarine">Welcome to the NLI :) ! </h1>
         <img src='http://cdnqrcgde.s3-eu-west-1.amazonaws.com/wp-content/uploads/2013/11/jpeg.jpg' alt="">
+    </div>
+    <br />
+    <div class row>
+        <div class="large-6 large-centered text-center columns" id="start_button">
+            <a class="button round" id="justabutton" style="width:80%;height:80%" value="Click to start">Click to start</a> 
+        </div>
     </div>
     <div id="gamescreen" style="visibility:hidden">
         <img id="image" src="" height="200px" width="200px">
@@ -27,8 +32,7 @@
         <div id="answer_2_txt"> default 2 </div> <br /> C:
         <div id="answer_3_txt"> default 3 </div> <br /> D:
         <div id="answer_4_txt"> default 4 </div> <br />
-    </div>
-
+    </div>    
 
     <div>
         <ol id="highscoreblock">
@@ -38,12 +42,9 @@
         <script src="js/vendor/foundation.js"></script>
         <script src="js/app.js"></script>
     </div>
-
-    <input type="button" id="justabutton" value="Click to start"></input>
-
-
-
-
+    <script>
+        $(document).foundation();
+    </script>
 </body>
 
 </html>
