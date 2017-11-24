@@ -10,7 +10,7 @@ $(function() {
     //var socket = io();
     var socket = io({ transports: ['websocket'] });
     socket.on('question', function(data) {
-        $('#image').attr("src", data.question);
+        $('#image').attr("src", data.question + "?timestamp=" + new Date().getTime());
         $('#answer_1_txt').html(data.choices[0]);
         $('#answer_2_txt').html(data.choices[1]);
         $('#answer_3_txt').html(data.choices[2]);
@@ -81,7 +81,7 @@ $(function() {
         $("#answer_4").css("background-color", "");
 
         // Reset image...
-        $('#image').attr("src", "   ");
+        $('#image').removeAttr("src");
 
     });
 
