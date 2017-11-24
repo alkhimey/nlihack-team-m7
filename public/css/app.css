@@ -1,1 +1,5 @@
-body {  background-image: url(background.png); } 
+body {  /* background-image: url(background.png);
+        */background-color: aquamarine; } 
+#question {
+    font-size: 12;
+}
