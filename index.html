@@ -25,34 +25,37 @@
         </div>
     </div>
     <div id="gamescreen" align="center" style="visibility:hidden">
-        <img id="image" src="" height="30%" width="30%">
-        <div class="small-6 column-centered columns" id = "question">
+        <img id="image" src="" height="30%" width="30%" align = "left">
+        <div class="small-6 column-centered columns" id = "question" align="right">
                 <ul class="stack button-group expanded">
                         <li id="answer_1_cont"><a href="#" class="button">
-                                <h4>&spades;</h4>
+                                <h3>&spades;</h3>
                                 <br />                             
-                                <div style="font-size:200%;" id="answer_1_txt"> default 1 </div>
+                                <div style="font-size:170%;" id="answer_1_txt"> default 1 </div>
                         </a></li>
                         <li id="answer_2_cont"><a href="#" class="button">
-                            <h4>&clubs;</h4>
+                            <h3>&clubs;</h3>
                             <br /> 
-                            <div style="font-size:200%;" id="answer_2_txt" > default 2 </div>
+                            <div style="font-size:170%;" id="answer_2_txt" > default 2 </div>
                         </a></li>
                     <li id="answer_3_cont" ><a href="#" class="button">
-                            <h4>&diam;</h4>
+                            <h3>&diam;</h3>
                             <br />
-                            <div id="answer_3_txt" style="font-size:200%;"> default 3 </div> 
+                            <div id="answer_3_txt" style="font-size:170%;"> default 3 </div> 
                         </a></li>
                     <li id="answer_4_cont"><a href="#" class="button">
-                            <h4>&hearts;</h4>
+                            <h3>&hearts;</h3>
                             <br />
-                            <div id="answer_4_txt" style="font-size:200%;"> default 4 </div>
+                            <div id="answer_4_txt" style="font-size:170%;"> default 4 </div>
                     </a></li>
             </ul>
         </div>
+        <ul class="side-nav" id="highscorenav" title="Players" style="background-color:darkgreen" align="right">
+        </ul>
     </div>    
 
     <div>
+
         <ol id="highscoreblock">
         </ol>
         <script src="/socket.io/socket.io.js"></script>
@@ -60,6 +63,7 @@
         <script src="js/vendor/foundation.js"></script>
         <script src="js/app.js"></script>
     </div>
+
     <script>
         $(document).foundation();
     </script>
