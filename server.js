@@ -121,7 +121,7 @@ function emitPlayerUpdate() {
 }
 
 const NUM_OF_ANSWERS = 4;
-const SIZE_OF_SAMPLE = 10;
+const SIZE_OF_SAMPLE = 200;
 
 function sampleDoc(data) {
     var docset = data.SEGMENTS.JAGROOT.RESULT.DOCSET;
