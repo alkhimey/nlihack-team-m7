@@ -79,13 +79,13 @@ $(function() {
 
     socket.on('UnPresentAnswer', function(data) {
 
-        $("#answer_1_txt").css("background-color", "");
+        $("#answer_1_cont").css("background-color", "");
         $("#answer_1").css("background-color", "");
-        $("#answer_2_txt").css("background-color", "");
+        $("#answer_2_cont").css("background-color", "");
         $("#answer_2").css("background-color", "");
-        $("#answer_3_txt").css("background-color", "");
+        $("#answer_3_cont").css("background-color", "");
         $("#answer_3").css("background-color", "");
-        $("#answer_4_txt").css("background-color", "");
+        $("#answer_4_cont").css("background-color", "");
         $("#answer_4").css("background-color", "");
 
         // Reset image...
