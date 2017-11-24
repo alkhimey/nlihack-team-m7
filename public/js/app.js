@@ -54,16 +54,16 @@ $(function() {
     socket.on('PresentAnswer', function(data) {
 
         if (data == 0) {
-            $("#answer_1_txt").css("background-color", "#4CAF50");
+            $("#answer_1_cont").css("background-color", "#4CAF50");
             $("#answer_1").css("background-color", "#4CAF50");
         } else if (data == 1) {
-            $("#answer_2_txt").css("background-color", "#4CAF50");
+            $("#answer_2_cont").css("background-color", "#4CAF50");
             $("#answer_2").css("background-color", "#4CAF50");
         } else if (data == 2) {
-            $("#answer_3_txt").css("background-color", "#4CAF50");
+            $("#answer_3_cont").css("background-color", "#4CAF50");
             $("#answer_3").css("background-color", "#4CAF50");
         } else if (data == 3) {
-            $("#answer_4_txt").css("background-color", "#4CAF50");
+            $("#answer_4_cont").css("background-color", "#4CAF50");
             $("#answer_4").css("background-color", "#4CAF50");
         }
 
