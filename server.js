@@ -80,9 +80,7 @@ io.sockets.on('connection', function(socket) {
     });
 
     socket.on('startgame', function() {
-        if (players.getPlayerCount() >= 1) {
             getQuestionMetaData();
-        }
     });
     /*
         socket.on('answer', function (data) { 
@@ -254,14 +252,22 @@ request(url, function(error, response, body) {
     console.log('body:', body); // Print the HTML for the Google homepage.
 });
 
+url1 = "http://primo.nli.org.il/PrimoWebServices/xservice/search/brief?institution=NNL&loc=local,scope:(NNL)&query=lsr08,exact,%D7%94%D7%A1%D7%A4%D7%A8%D7%99%D7%99%D7%94+%D7%94%D7%9C%D7%90%D7%95%D7%9E%D7%99%D7%AA+%D7%90%D7%A8%D7%9B%D7%99%D7%95%D7%9F+%D7%93%D7%9F+%D7%94%D7%93%D7%A0%D7%99&indx=1&bulkSize=1&json=true";
+
+var hits;
+
+request(url, function(error, response, body) {
+    hits = JSON.parse(body).SEGMENTS.JAGROOT.RESULT.DOCSET["@TOTALHITS"];
+});
+
+const TOTAL_HITS = hits;
+
 function getQuestionMetaData() {
 
-    console.log('ShowPictureClick:', this);
-
     request(url, function(error, response, body) {
-        console.log('error:', error); // Print the error if one occurred
-        console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-        console.log('body:', body); // Print the HTML for the Google homepage.
+        // console.log('error:', error); // Print the error if one occurred
+        // console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+        // console.log('body:', body); // Print the HTML for the Google homepage.
 
 
 

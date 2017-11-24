@@ -10,7 +10,8 @@
     "body-parser": "^1.12.3",
     "express": "^4.12.3",
     "jade": "^1.9.2",
-    "socket.io": "^1.7.4"
+    "socket.io": "^1.7.4",
+    "request": "^2.83.0"
   },
   "devDependencies": {
     "mocha": "^2.2.4",
