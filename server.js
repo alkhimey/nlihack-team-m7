@@ -38,7 +38,7 @@ app.get('/p', function(req, res) {
 });
 
 
-const QUESTION_TIME = 10000; // <-------- also update app.js!
+const QUESTION_TIME = 15000; // <-------- also update app.js!
 const  DISPL_ANSWER_TIME = 5000;
 
 var currentQustion = null;
