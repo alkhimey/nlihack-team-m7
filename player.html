@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Trivia Game</title>
+    <meta name="description" content="A Fun Trivia Game Project.  Details at https://github.com/chadn/trivia-game">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700' rel='stylesheet' type='text/css'>
+    <link href="css/trivia.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/form.css">
+    <link rel="stylesheet" type="text/css" href="/css/foundation.css">
+    <link rel="stylesheet" type="text/css" href="/css/app.css">
+</head>
+
+<body>
+    <div id="firstconnect">
+        <input type="text" id="name">
+
+        <input type="button" id="connect" value="connect">
+    </div>
+    <br />
+    <div id="answersblock" style="visibility:hidden;" class="app">
+        <div align="center" class="row fullwidth" data-equalizer>
+           <div class="large-12 auto">
+            <span id="selected" class="badge secondary" style="font-size: 200%">dgf </span>
+           </div>
+        </div>
+        <div align="center" class="row fullwidth" data-equalizer>
+            <div class="large-6 small-6 columns">
+                <input type="button" id="answer_1" value="A" class="button " style="font-size: 200%">
+            </div>
+            <div class="large-6 small-6 columns">
+                <input type="button" id="answer_2" value="B" class="button " style="font-size: 200%">
+            </div>
+         </div>
+        <div align="center" class="row fullwidth" data-equalizer>
+            <div class="large-6 small-6 columns">
+                <input type="button" id="answer_3" value="C" class="button " style="font-size: 200%">
+            </div>
+            <div class="large-6 small-6 columns">
+                <input type="button" id="answer_4" value="D" class="button " style="font-size: 200%">
+            </div>
+        </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/vendor/foundation.js"></script>
+    <script src="js/app.js"></script>
+
+
+
+</body>
+
+</html>
