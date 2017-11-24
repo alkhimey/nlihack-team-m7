@@ -15,7 +15,7 @@
 
 <body>
     <div id="openningscreen" align="center">
-        <h1 style="color:aquamarine">Welcome to the NLI :) ! </h1>
+        <h1 style="color :black">Welcome to the NLI :) ! </h1>
         <img src='http://cdnqrcgde.s3-eu-west-1.amazonaws.com/wp-content/uploads/2013/11/jpeg.jpg' alt="">
     </div>
     <br />
@@ -24,14 +24,32 @@
             <a class="button round" id="justabutton" style="width:80%;height:80%" value="Click to start">Click to start</a> 
         </div>
     </div>
-    <div id="gamescreen" style="visibility:hidden">
-        <img id="image" src="" height="200px" width="200px">
-
-        <br /> A:
-        <div id="answer_1_txt"> default 1 </div> <br /> B:
-        <div id="answer_2_txt"> default 2 </div> <br /> C:
-        <div id="answer_3_txt"> default 3 </div> <br /> D:
-        <div id="answer_4_txt"> default 4 </div> <br />
+    <div id="gamescreen" align="center" style="visibility:hidden">
+        <img id="image" src="" height="30%" width="30%">
+        <div class="small-6 column-centered columns" id = "question">
+                <ul class="stack button-group expanded">
+                        <li id="answer_1_cont"><a href="#" class="button">
+                                <h4>&spades;</h4>
+                                <br />                             
+                                <div style="font-size:200%;" id="answer_1_txt"> default 1 </div>
+                        </a></li>
+                        <li id="answer_2_cont"><a href="#" class="button">
+                            <h4>&clubs;</h4>
+                            <br /> 
+                            <div style="font-size:200%;" id="answer_2_txt" > default 2 </div>
+                        </a></li>
+                    <li id="answer_3_cont" ><a href="#" class="button">
+                            <h4>&diam;</h4>
+                            <br />
+                            <div id="answer_3_txt" style="font-size:200%;"> default 3 </div> 
+                        </a></li>
+                    <li id="answer_4_cont"><a href="#" class="button">
+                            <h4>&hearts;</h4>
+                            <br />
+                            <div id="answer_4_txt" style="font-size:200%;"> default 4 </div>
+                    </a></li>
+            </ul>
+        </div>
     </div>    
 
     <div>
