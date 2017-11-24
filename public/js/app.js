@@ -53,6 +53,8 @@ $(function() {
 
     socket.on('PresentAnswer', function(data) {
 
+        progress_width = 100;
+
         if (data == 0) {
             $("#answer_1_cont").css("background-color", "#4CAF50");
             $("#answer_1").css("background-color", "#4CAF50");
