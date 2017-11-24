@@ -48,7 +48,7 @@ $(function() {
     });
 
     socket.on('clearanswers', function() {
-        $("#selected").css("display", "none");
+        $("#selected").html("?");
     });
 
     socket.on('PresentAnswer', function(data) {
