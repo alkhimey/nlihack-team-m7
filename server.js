@@ -8,7 +8,7 @@ var express = require('express'),
     tq = require('./lib/TriviaQuestions.js'),
     players = require('./lib/Players.js'),
 
-    PORT = process.env.PORT || 3000,
+    PORT = process.env.PORT || 8080,
     url = 'http://localhost:' + PORT + '/';
 
 if (process.env.SUBDOMAIN) {
@@ -172,7 +172,7 @@ function emitPlayerUpdate() {
 }
 
 const NUM_OF_ANSWERS = 4;
-const SIZE_OF_SAMPLE = 100;
+const SIZE_OF_SAMPLE = 10;
 
 function sampleDoc(data) {
     var docset = data.SEGMENTS.JAGROOT.RESULT.DOCSET;
@@ -245,30 +245,24 @@ var request = require('request');
 
 url = "http://primo.nli.org.il/PrimoWebServices/xservice/search/brief?institution=NNL&loc=local,scope:(NNL)&query=lsr08,exact,%D7%94%D7%A1%D7%A4%D7%A8%D7%99%D7%99%D7%94+%D7%94%D7%9C%D7%90%D7%95%D7%9E%D7%99%D7%AA+%D7%90%D7%A8%D7%9B%D7%99%D7%95%D7%9F+%D7%93%D7%9F+%D7%94%D7%93%D7%A0%D7%99&indx=1&bulkSize=" + SIZE_OF_SAMPLE + "&json=true";
 
-request(url, function(error, response, body) {
-    console.log('error:', error); // Print the error if one occurred
-    console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-    console.log('body:', body); // Print the HTML for the Google homepage.
+urlTotalHits = "http://primo.nli.org.il/PrimoWebServices/xservice/search/brief?institution=NNL&loc=local,scope:(NNL)&query=lsr08,exact,%D7%94%D7%A1%D7%A4%D7%A8%D7%99%D7%99%D7%94+%D7%94%D7%9C%D7%90%D7%95%D7%9E%D7%99%D7%AA+%D7%90%D7%A8%D7%9B%D7%99%D7%95%D7%9F+%D7%93%D7%9F+%D7%94%D7%93%D7%A0%D7%99&indx=1&bulkSize=1&json=true";
+
+var TOTAL_HITS;
+
+request(urlTotalHits, function(error, response, body) {
+    TOTAL_HITS = JSON.parse(body).SEGMENTS.JAGROOT.RESULT.DOCSET["@TOTALHITS"];
 });
-
-url1 = "http://primo.nli.org.il/PrimoWebServices/xservice/search/brief?institution=NNL&loc=local,scope:(NNL)&query=lsr08,exact,%D7%94%D7%A1%D7%A4%D7%A8%D7%99%D7%99%D7%94+%D7%94%D7%9C%D7%90%D7%95%D7%9E%D7%99%D7%AA+%D7%90%D7%A8%D7%9B%D7%99%D7%95%D7%9F+%D7%93%D7%9F+%D7%94%D7%93%D7%A0%D7%99&indx=1&bulkSize=1&json=true";
-
-var hits;
-
-request(url, function(error, response, body) {
-    hits = JSON.parse(body).SEGMENTS.JAGROOT.RESULT.DOCSET["@TOTALHITS"];
-});
-
-const TOTAL_HITS = hits;
 
 function getQuestionMetaData() {
 
-    request(url, function(error, response, body) {
+    var randomImageIndex = Math.floor((Math.random() * TOTAL_HITS - 100) + 1);
+
+    randomUrl = "http://primo.nli.org.il/PrimoWebServices/xservice/search/brief?institution=NNL&loc=local,scope:(NNL)&query=lsr08,exact,%D7%94%D7%A1%D7%A4%D7%A8%D7%99%D7%99%D7%94+%D7%94%D7%9C%D7%90%D7%95%D7%9E%D7%99%D7%AA+%D7%90%D7%A8%D7%9B%D7%99%D7%95%D7%9F+%D7%93%D7%9F+%D7%94%D7%93%D7%A0%D7%99&indx=" + randomImageIndex + "&bulkSize=" + SIZE_OF_SAMPLE + "&json=true";
+
+    request(randomUrl, function(error, response, body) {
         // console.log('error:', error); // Print the error if one occurred
         // console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
         // console.log('body:', body); // Print the HTML for the Google homepage.
-
-
 
         var recordId = JSON.parse(body).SEGMENTS.JAGROOT.RESULT.DOCSET.DOC[0].PrimoNMBib.record.control.recordid;
 
@@ -318,7 +312,7 @@ function getQuestionMetaData() {
 
                 emitNewQuestion(obj);
 
-                return obj;
+                // return obj;
             });
         });
     });
