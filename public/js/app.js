@@ -1,7 +1,7 @@
 $(document).foundation() // artium
 
 var progress_width = 0; // pct
-var question_time = 10000; // ms
+var question_time = 15000; // ms // <-------- also update server.js!
 var progress_resolution = 50; // update every 100 ms
 var prog_intervall_id = null;
 
