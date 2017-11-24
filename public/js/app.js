@@ -1,16 +1,22 @@
 $(document).foundation() // artium
 
 var progress_width = 0; // pct
-var question_time = 5000; // ms
+var question_time = 15000; // ms // <-------- also update server.js!
 var progress_resolution = 50; // update every 100 ms
 var prog_intervall_id = null;
 
 $(function() {
 
+
+    $( document ).ready(function() {
+        //$('#justabutton').attr("disabled", "disabled");
+        socket.emit("startgame");
+    });
+
     //var socket = io();
     var socket = io({ transports: ['websocket'] });
     socket.on('question', function(data) {
-        $('#image').attr("src", data.question);
+        $('#image').attr("src", data.question + "?timestamp=" + new Date().getTime());
         $('#answer_1_txt').html(data.choices[0]);
         $('#answer_2_txt').html(data.choices[1]);
         $('#answer_3_txt').html(data.choices[2]);
@@ -48,22 +54,24 @@ $(function() {
     });
 
     socket.on('clearanswers', function() {
-        $("#selected").css("display", "none");
+        $("#selected").html("?");
     });
 
     socket.on('PresentAnswer', function(data) {
 
+        progress_width = 100;
+
         if (data == 0) {
-            $("#answer_1_txt").css("background-color", "#4CAF50");
+            $("#answer_1_cont").css("background-color", "#4CAF50");
             $("#answer_1").css("background-color", "#4CAF50");
         } else if (data == 1) {
-            $("#answer_2_txt").css("background-color", "#4CAF50");
+            $("#answer_2_cont").css("background-color", "#4CAF50");
             $("#answer_2").css("background-color", "#4CAF50");
         } else if (data == 2) {
-            $("#answer_3_txt").css("background-color", "#4CAF50");
+            $("#answer_3_cont").css("background-color", "#4CAF50");
             $("#answer_3").css("background-color", "#4CAF50");
         } else if (data == 3) {
-            $("#answer_4_txt").css("background-color", "#4CAF50");
+            $("#answer_4_cont").css("background-color", "#4CAF50");
             $("#answer_4").css("background-color", "#4CAF50");
         }
 
@@ -71,20 +79,26 @@ $(function() {
 
     socket.on('UnPresentAnswer', function(data) {
 
-        $("#answer_1_txt").css("background-color", "");
+        $("#answer_1_cont").css("background-color", "");
         $("#answer_1").css("background-color", "");
-        $("#answer_2_txt").css("background-color", "");
+        $("#answer_2_cont").css("background-color", "");
         $("#answer_2").css("background-color", "");
-        $("#answer_3_txt").css("background-color", "");
+        $("#answer_3_cont").css("background-color", "");
         $("#answer_3").css("background-color", "");
-        $("#answer_4_txt").css("background-color", "");
+        $("#answer_4_cont").css("background-color", "");
         $("#answer_4").css("background-color", "");
-    });
-    $('#justabutton').click(function() {
 
+        // Reset image...
+        $('#image').removeAttr("src");
+
+    });
+
+    /*$('#justabutton').click(function() {
+
+        $('#justabutton').attr("disabled", "disabled");
         socket.emit("startgame");
 
-    });
+    });*/
 
     $('#connect').click(function() {
         socket.emit("playerJoin", { playerName: $('#name').val() });
