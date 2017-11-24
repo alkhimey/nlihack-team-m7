@@ -37,17 +37,15 @@ app.get('/p', function(req, res) {
 });
 
 
-var nextQuestionDelayMs = 5000; //5secs // how long are players 'warned' next question is coming
-var timeToAnswerMs = 10000; // 10secs // how long players have to answer question 
-var timeToEnjoyAnswerMs = 5000; //5secs // how long players have to read answer
+const QUESTION_TIME = 10000; // <-------- also update app.js!
+const  DISPL_ANSWER_TIME = 5000;
+
 var currentQustion = null;
 
 //Socket.io emits this event when a connection is made.
 io.sockets.on('connection', function(socket) {
 
     socket.on('answer', function(data) {
-        console.log('button ' + data.number);
-
         players.setAnswer(socket.id, parseInt(data.number));
     });
 
@@ -98,7 +96,7 @@ io.sockets.on('connection', function(socket) {
 
 
 function emitNewQuestion(q) {
-    console.log(new Date().getTime());
+    console.log("emitting question: " + q);
     //players.winningSocket = null;
     var index = Math.floor(Math.random() * 3);
 
@@ -126,44 +124,13 @@ function emitNewQuestion(q) {
         //     emitAnswer();
         // }, timeToAnswerMs);
 
-    }, 5000);
+    }, QUESTION_TIME);
 
     setTimeout(function() {
         //emitNewQuestion();
         getQuestionMetaData();
-    }, 10000);
+    }, QUESTION_TIME + DISPL_ANSWER_TIME);
 }
-
-/*
-function emitAnswer() {
-    
-    var answerData = tq.getQuestionObj();
-    delete answerData.choices;
-    answerData.correctAnswer = tq.getAnswer();
-    answerData.endTime = new Date().getTime() + timeToEnjoyAnswerMs;
-    answerData.totalTime = timeToEnjoyAnswerMs;
-    answerData.winner = false;
-    
-    if (players.winningSocket) {
-        answerData.winnerName = players.getPlayerName(players.winningSocket.id);
-        players.addPlayerPoints(players.winningSocket.id, answerData.points);
-        
-        emitPlayerUpdate(); // send update because points changed
-        
-        players.winningSocket.broadcast.emit('question', answerData); // emit to all but winner 
-
-        answerData.winner = true;
-        players.winningSocket.emit('question', answerData); // emit only to winner
-        
-    } else {
-        io.sockets.emit('question', answerData); // emit to everyone (no winner)
-    }
-    
-    setTimeout(function(){
-        emitNewQuestion();
-    }, timeToEnjoyAnswerMs);
-}
-*/
 
 
 function emitPlayerUpdate() {

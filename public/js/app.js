@@ -1,7 +1,7 @@
 $(document).foundation() // artium
 
 var progress_width = 0; // pct
-var question_time = 5000; // ms
+var question_time = 10000; // ms
 var progress_resolution = 50; // update every 100 ms
 var prog_intervall_id = null;
 
@@ -79,9 +79,15 @@ $(function() {
         $("#answer_3").css("background-color", "");
         $("#answer_4_txt").css("background-color", "");
         $("#answer_4").css("background-color", "");
+
+        // Reset image...
+        $('#image').attr("src", "   ");
+
     });
+
     $('#justabutton').click(function() {
 
+        $('#justabutton').attr("disabled", "disabled");
         socket.emit("startgame");
 
     });
