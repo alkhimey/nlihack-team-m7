@@ -80,9 +80,7 @@ io.sockets.on('connection', function(socket) {
     });
 
     socket.on('startgame', function() {
-        if (players.getPlayerCount() >= 1) {
             getQuestionMetaData();
-        }
     });
     /*
         socket.on('answer', function (data) { 

@@ -50,10 +50,6 @@ $(function() {
         }
 
     });
-    //remove screenstart 
-    socket.on('startgame', function() {
-
-    });
 
     socket.on('UnPresentAnswer', function(data) {
 
