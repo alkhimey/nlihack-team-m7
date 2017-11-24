@@ -19,12 +19,13 @@ server.listen(PORT);
 console.log("Express server listening on port " + PORT);
 console.log(url);
 
-tq.init(mathQuestions);
 players.init();
 
 //app.use('/css', express.static(__dirname + 'public/css'));
 //app.use('/js', express.static(__dirname + 'public/js'));
 app.use(express.static('public'))
+
+
 
 
 
@@ -79,14 +80,17 @@ io.sockets.on('connection', function(socket) {
     });
 
     socket.on('startgame', function() {
-        if (game_in_prog == false) {
-            game_in_prog = true;
-            getQuestionMetaData();
-        }         
+       if (game_in_prog == false) {
+           game_in_prog = true;
+           getQuestionMetaData();
+       }         
     });
 });
 
 function emitNewQuestion(q) {
+
+    emitPlayerUpdate(); // if main client have just connected
+
     console.log("emitting question: " + q);
     var index = Math.floor(Math.random() * 3);
 

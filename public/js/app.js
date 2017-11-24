@@ -7,6 +7,12 @@ var prog_intervall_id = null;
 
 $(function() {
 
+
+    $( document ).ready(function() {
+        //$('#justabutton').attr("disabled", "disabled");
+        socket.emit("startgame");
+    });
+
     //var socket = io();
     var socket = io({ transports: ['websocket'] });
     socket.on('question', function(data) {
@@ -87,12 +93,12 @@ $(function() {
 
     });
 
-    $('#justabutton').click(function() {
+    /*$('#justabutton').click(function() {
 
         $('#justabutton').attr("disabled", "disabled");
         socket.emit("startgame");
 
-    });
+    });*/
 
     $('#connect').click(function() {
         socket.emit("playerJoin", { playerName: $('#name').val() });
