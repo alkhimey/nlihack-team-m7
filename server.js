@@ -70,13 +70,12 @@ io.sockets.on('connection', function(socket) {
 
     socket.on('disconnect', function() {
         var pname = players.getPlayerName(socket.id);
-        console.log('SOCKET.IO player disconnect: ' + pname + ' for socket ' + socket.id);
-        if (!pname) {
-            // already disconnected
-            return;
+        console.log("SOCKET.IO " + socket.id + "is disconnecting...");
+        if (pname) {
+            console.log('SOCKET.IO player disconnect: ' + pname + ' for socket ' + socket.id);
+            players.removePlayer(socket.id);
+            emitPlayerUpdate();
         }
-        players.removePlayer(socket.id);
-        emitPlayerUpdate();
     });
 
     socket.on('startgame', function() {
