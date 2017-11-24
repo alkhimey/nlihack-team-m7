@@ -79,25 +79,10 @@ io.sockets.on('connection', function(socket) {
     socket.on('startgame', function() {
             getQuestionMetaData();
     });
-    /*
-        socket.on('answer', function (data) { 
-            console.log('SOCKET.IO player answered: "'+ data.answer + '" for question: '+ data.question);
-            players.lastActive(socket.id);
-            // TODO: handle case where player might have already answered (damn hackers)
-            if (tq.isCorrect(data) && !players.winningSocket) {
-                console.log('SOCKET.IO player correct ! =========> : "'+ data.answer + '", '+ players[socket.id] + ' for socket '+ socket.id);
-                players.winningSocket = socket;
-            }
-        });
-    */
 });
-
-
-
 
 function emitNewQuestion(q) {
     console.log("emitting question: " + q);
-    //players.winningSocket = null;
     var index = Math.floor(Math.random() * 3);
 
     currentQustion = q;
