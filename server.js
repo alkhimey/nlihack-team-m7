@@ -62,8 +62,6 @@ io.sockets.on('connection', function(socket) {
         console.log('SOCKET.IO player added: ' + p.name + ' from ' + ip + ' for socket ' + socket.id);
         emitPlayerUpdate();
 
-        // TODO: Remove  - debug
-
 
     });
 
@@ -220,8 +218,9 @@ function getQuestionMetaData() {
         var imageManifest = "http://iiif.nli.org.il/IIIFv21/DOCID/" + recordId + "/manifest"
 
         request(imageManifest, function(error, response, body) {
-
-            var imageUrl = JSON.parse(body).sequences[0].canvases[0].images[0].resource["@id"];
+            var URL = "http://iiif.nli.org.il/IIIFv21/";
+            var imageUrl = URL+JSON.parse(body).sequences[0].canvases[0].images[0]["@id"];
+            imageUrl = imageUrl + "/full/!256,256/0/default.jpg";
             var url1 = "http://primo.nli.org.il/PrimoWebServices/xservice/search/brief?institution=NNL&loc=local,scope:(NNL)&query=lsr08,exact,%D7%94%D7%A1%D7%A4%D7%A8%D7%99%D7%99%D7%94+%D7%94%D7%9C%D7%90%D7%95%D7%9E%D7%99%D7%AA+%D7%90%D7%A8%D7%9B%D7%99%D7%95%D7%9F+%D7%93%D7%9F+%D7%94%D7%93%D7%A0%D7%99&indx=1&bulkSize=" + SIZE_OF_SAMPLE + "&json=true";
             var desc = null;
             var answersArray = [trueDesc];
